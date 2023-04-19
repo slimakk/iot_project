@@ -2,9 +2,9 @@ import time
 
 class TMG3993:
     
-    def __init__(self, I2C):
-        self.i2c = I2C
-        REG_RAM = 0x80
+    def __init__(self, i2c):
+        self.i2c = i2c
+        
 
 
     '''
@@ -18,7 +18,7 @@ class TMG3993:
         return true;
     }
     '''
-    def initialie(self):
+    def initialise(self):
         time.sleep(0.06)
         if self.getDeviceID() != 0x2a:
             return False
@@ -31,9 +31,14 @@ class TMG3993:
     return (data >> 2);
     }
     '''
+    def convert(data):
+        int_val = int.from_bytes(data,"big")
+        return int_val
+    
     def getDeviceID(self):
-        data = self.i2c.readfrom(0x92,1) #REG_ID, &data 1
-        return data >> 2
+        data = self.i2c.readfrom_mem(0x39,0x92,1) #REG_ID, &data 1
+        int_val = int.from_bytes(data,"big")
+        return int_val >> 2
 
     def enableEngines(self, enable_bits):
         pben = False
@@ -43,7 +48,8 @@ class TMG3993:
             enable_bits = 0x80
             pben = True
         data.append(0x01 | enable_bits)
-        self.i2c.writeto(data,2)
+        print(data)
+        self.i2c.writeto_mem(0x39, 0x80,  data[1].to_bytes(1,"little"))
 
         if not pben:
             time.sleep(0.07)
@@ -68,11 +74,12 @@ class TMG3993:
         data = [0x8C, pers]
         self.i2c.writeto(data, 2)
     def getControlReg(self):
-        data = self.i2c.readfrom(0x8F, 1)
-        return data
+        data = self.i2c.readfrom_mem(0x39,0x8F, 1)
+        valu =int.from_bytes(data,"big")
+        return valu
     def setControlReg(self,control):
         data = [0x8F, control]
-        self.i2c.writeto(data, 2)
+        self.i2c.writeto_mem(data, 2)
 
     def getCONFIG2(self):
         data = self.i2c.readfrom(0x90, 1)
@@ -134,15 +141,27 @@ class TMG3993:
         data = [0x84, low & 0xff, low >> 8, high & 0xff, high >> 8]
         self.i2c.writeto(data, 2)
     def getRGBCRaw(self):
-        data = self.i2c.readfrom(0x94, 8)
+        data = self.i2c.readfrom_mem(0x39,0x94, 8)
+        '''
+        print(data[0],data[1],data[2],data[3],data[4])
+        int_val = int.from_bytes(data[0],"big")
+        int_val2 = int.from_bytes(data[2],"big")
+        int_val4 = int.from_bytes(data[4],"big")
+        int_val6 = int.from_bytes(data[6],"big")
+        print(int_val,int_val2,int_val4,int_val6)
+        C = self.convert(data[1])# << 8# | self.convert(data[0])
+        R = self.convert(data[3]) << 8 | self.convert(data[2])
+        G = self.convert(data[5]) << 8 | self.convert(data[4])
+        B = self.convert(data[7]) << 8 | self.convert(data[6])
+        '''
         C = (data[1] << 8) | data[0]
         R = (data[3] << 8) | data[2]
         G = (data[5] << 8) | data[4]
         B = (data[7] << 8) | data[6]
         return R, G, B, C
-    def getLux(self,R,G,B,C):
-        data = self.i2c.readfrom(0x81, 1)
-        ms = (256 - data) * float(2.78)
+    def getLux1(self,R,G,B,C):
+        data = self.i2c.readfrom_mem(0x39,0x81, 1)
+        ms = (256 - int.from_bytes(data,"big")) * float(2.78)
         data = self.getControlReg()
         gain = 0
         if data & 0x3 == 0x0:
@@ -170,7 +189,7 @@ class TMG3993:
         return int(L)
     def getLux(self):
         R, G, B, C = self.getRGBCRaw()
-        return self.getLux(R, G, B, C)
+        return self.getLux1(R, G, B, C)
     def getCCT(self, R, G, B, C):
         IR = R + G + B
         IR =  (IR - C)/2
