@@ -1,0 +1,373 @@
+{
+  "title": "IoT Devkit Dashboard",
+  "image": null,
+  "mobileHide": false,
+  "mobileOrder": null,
+  "configuration": {
+    "description": "",
+    "widgets": {
+      "d4369b05-6088-5183-8efb-79807717656e": {
+        "isSystemType": true,
+        "bundleAlias": "charts",
+        "typeAlias": "basic_timeseries",
+        "type": "timeseries",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 8,
+        "sizeY": 5,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "c8c93dfe-2dd7-1e11-7555-3347ac05a54f",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "water_level",
+                  "type": "timeseries",
+                  "label": "water_level",
+                  "color": "#2196f3",
+                  "settings": {
+                    "excludeFromStacking": false,
+                    "hideDataByDefault": false,
+                    "disableDataHiding": false,
+                    "removeFromLegend": false,
+                    "showLines": true,
+                    "fillLines": false,
+                    "showPoints": false,
+                    "showPointShape": "circle",
+                    "pointShapeFormatter": "var size = radius * Math.sqrt(Math.PI) / 2;\nctx.moveTo(x - size, y - size);\nctx.lineTo(x + size, y + size);\nctx.moveTo(x - size, y + size);\nctx.lineTo(x + size, y - size);",
+                    "showPointsLineWidth": 5,
+                    "showPointsRadius": 3,
+                    "showSeparateAxis": false,
+                    "axisPosition": "left",
+                    "thresholds": [
+                      {
+                        "thresholdValueSource": "predefinedValue"
+                      }
+                    ],
+                    "comparisonSettings": {
+                      "showValuesForComparison": true
+                    }
+                  },
+                  "_hash": 0.3529089242349783,
+                  "units": " ",
+                  "decimals": 0,
+                  "funcBody": null,
+                  "usePostProcessing": null,
+                  "postFuncBody": null
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": true,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "8px",
+          "settings": {
+            "shadowSize": 4,
+            "fontColor": "#545454",
+            "fontSize": 10,
+            "xaxis": {
+              "showLabels": true,
+              "color": "#545454"
+            },
+            "yaxis": {
+              "showLabels": true,
+              "color": "#545454",
+              "tickDecimals": 2
+            },
+            "grid": {
+              "color": "#545454",
+              "tickColor": "#DDDDDD",
+              "verticalLines": true,
+              "horizontalLines": true,
+              "outlineWidth": 1
+            },
+            "stack": false,
+            "tooltipIndividual": false,
+            "smoothLines": false,
+            "tooltipCumulative": false,
+            "hideZeros": false,
+            "showTooltip": true,
+            "comparisonEnabled": false,
+            "timeForComparison": "previousInterval",
+            "xaxisSecond": {
+              "axisPosition": "top",
+              "showLabels": true
+            },
+            "customLegendEnabled": false
+          },
+          "title": "Temperature - AHT20",
+          "dropShadow": true,
+          "enableFullscreen": true,
+          "titleStyle": {
+            "fontSize": "16px",
+            "fontWeight": 400
+          },
+          "useDashboardTimewindow": true,
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "widgetStyle": {},
+          "widgetCss": "",
+          "noDataDisplayMessage": "",
+          "showLegend": true,
+          "legendConfig": {
+            "direction": "column",
+            "position": "bottom",
+            "sortDataKeys": true,
+            "showMin": true,
+            "showMax": true,
+            "showAvg": true,
+            "showTotal": false
+          },
+          "units": "",
+          "decimals": 0
+        },
+        "row": 0,
+        "col": 0,
+        "id": "d4369b05-6088-5183-8efb-79807717656e"
+      },
+      "7029809d-d191-c6e9-e516-610670286d0e": {
+        "isSystemType": true,
+        "bundleAlias": "gpio_widgets",
+        "typeAlias": "gpio_panel",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 5,
+        "sizeY": 2,
+        "config": {
+          "showTitle": true,
+          "backgroundColor": "#fff",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "settings": {
+            "gpioList": [
+              {
+                "pin": 20,
+                "row": 0,
+                "col": 0,
+                "color": "#0092ff",
+                "_uniqueKey": 0,
+                "label": "BUTTON_SEND"
+              },
+              {
+                "pin": 21,
+                "label": "PIR_DETECTOR",
+                "row": 0,
+                "col": 1,
+                "color": "#ffaf00",
+                "_uniqueKey": 1
+              }
+            ],
+            "ledPanelBackgroundColor": "rgba(183, 28, 28, 0)"
+          },
+          "title": "Buttons",
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "c8c93dfe-2dd7-1e11-7555-3347ac05a54f",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "BUTTON",
+                  "type": "timeseries",
+                  "label": "BUTTON 2",
+                  "color": "#f44336",
+                  "settings": {},
+                  "_hash": 0.5937002808312521
+                },
+                {
+                  "name": "PIR",
+                  "type": "timeseries",
+                  "label": "PIR 2",
+                  "color": "#ffc107",
+                  "settings": {},
+                  "_hash": 0.318170646852022
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitleIcon": false,
+          "titleTooltip": "",
+          "dropShadow": false,
+          "enableFullscreen": false,
+          "widgetStyle": {},
+          "widgetCss": "",
+          "titleStyle": {
+            "fontSize": "16px",
+            "fontWeight": 400
+          },
+          "noDataDisplayMessage": "",
+          "showLegend": false,
+          "legendConfig": {
+            "direction": "column",
+            "position": "bottom",
+            "sortDataKeys": false,
+            "showMin": false,
+            "showMax": false,
+            "showAvg": false,
+            "showTotal": false
+          }
+        },
+        "row": 0,
+        "col": 0,
+        "id": "7029809d-d191-c6e9-e516-610670286d0e"
+      },
+      "2d8382db-2a7e-4631-be44-c3e9c8577467": {
+        "isSystemType": true,
+        "bundleAlias": "cards",
+        "typeAlias": "simple_card",
+        "type": "latest",
+        "title": "New widget",
+        "image": null,
+        "description": null,
+        "sizeX": 5,
+        "sizeY": 3,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "name": null,
+              "entityAliasId": "c8c93dfe-2dd7-1e11-7555-3347ac05a54f",
+              "filterId": null,
+              "dataKeys": [
+                {
+                  "name": "message",
+                  "type": "timeseries",
+                  "label": "message",
+                  "color": "#2196f3",
+                  "settings": {},
+                  "_hash": 0.5851669092402552
+                }
+              ]
+            }
+          ],
+          "timewindow": {
+            "realtime": {
+              "timewindowMs": 60000
+            }
+          },
+          "showTitle": false,
+          "backgroundColor": "#4093fc",
+          "color": "rgba(255, 255, 255, 0.87)",
+          "padding": "10px",
+          "settings": {
+            "labelPosition": "top"
+          },
+          "title": "New Simple card",
+          "dropShadow": true,
+          "enableFullscreen": true,
+          "titleStyle": {
+            "fontSize": "16px",
+            "fontWeight": 400
+          },
+          "units": "°C",
+          "decimals": 0,
+          "useDashboardTimewindow": true,
+          "showLegend": false,
+          "widgetStyle": {},
+          "actions": {},
+          "widgetCss": "",
+          "noDataDisplayMessage": ""
+        },
+        "row": 0,
+        "col": 0,
+        "id": "2d8382db-2a7e-4631-be44-c3e9c8577467"
+      }
+    },
+    "states": {
+      "default": {
+        "name": "IoT Devkit Dashboard",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "d4369b05-6088-5183-8efb-79807717656e": {
+                "sizeX": 16,
+                "sizeY": 9,
+                "row": 2,
+                "col": 0
+              },
+              "7029809d-d191-c6e9-e516-610670286d0e": {
+                "sizeX": 10,
+                "sizeY": 2,
+                "row": 0,
+                "col": 6
+              },
+              "2d8382db-2a7e-4631-be44-c3e9c8577467": {
+                "sizeX": 6,
+                "sizeY": 2,
+                "row": 0,
+                "col": 0
+              }
+            },
+            "gridSettings": {
+              "backgroundColor": "#eeeeee",
+              "columns": 24,
+              "margin": 10,
+              "backgroundSizeMode": "100%"
+            }
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "c8c93dfe-2dd7-1e11-7555-3347ac05a54f": {
+        "id": "c8c93dfe-2dd7-1e11-7555-3347ac05a54f",
+        "alias": "Device",
+        "filter": {
+          "type": "singleEntity",
+          "resolveMultiple": false,
+          "singleEntity": {
+            "entityType": "DEVICE",
+            "id": "22c1cb80-e500-11ed-b585-83dff961fb55"
+          }
+        }
+      }
+    },
+    "filters": {},
+    "timewindow": {
+      "hideInterval": false,
+      "hideAggregation": false,
+      "hideAggInterval": false,
+      "hideTimezone": false,
+      "selectedTab": 0,
+      "realtime": {
+        "realtimeType": 0,
+        "timewindowMs": 1800000,
+        "quickInterval": "CURRENT_DAY",
+        "interval": 5000
+      },
+      "aggregation": {
+        "type": "AVG",
+        "limit": 25000
+      }
+    },
+    "settings": {
+      "stateControllerId": "entity",
+      "showTitle": false,
+      "showDashboardsSelect": true,
+      "showEntitiesSelect": true,
+      "showDashboardTimewindow": true,
+      "showDashboardExport": true,
+      "toolbarAlwaysOpen": true
+    }
+  },
+  "name": "IoT Devkit Dashboard"
+}
